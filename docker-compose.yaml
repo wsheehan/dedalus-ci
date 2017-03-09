@@ -1,0 +1,30 @@
+jenkins-data:
+  image: sheehan95/jenkins-data
+  container_name: jenkins-data
+
+jenkins-master:
+  image: sheehan95/jenkins-master
+  container_name: jenkins-master
+  volumes_from:
+    - jenkins-data
+  ports:
+    - "50000:50000"
+    - "8080:8080"
+
+docker-api:
+  image: shipyard/docker-proxy
+  container_name: docker-proxy
+  ports:
+    - "3375:2375"
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+  environment:
+    - PORT=2375
+
+nginx-proxy:
+  image: sheehan95/nginx-proxy
+  container_name: nginx-proxy
+  ports:
+    - "443:443"
+  links:
+    - jenkins-master:jenkins-master
