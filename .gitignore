@@ -1,0 +1,2 @@
+# Ignore SSL cert and key for nginx
+nginx-proxy/conf/myssl.*
