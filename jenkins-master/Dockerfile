@@ -1,8 +1,7 @@
-FROM jenkins:latest
+FROM jenkins:alpine
 MAINTAINER Will Sheehan
 
 USER root
-
 RUN mkdir /var/log/jenkins
 RUN chown -R jenkins:jenkins /var/log/jenkins 
 
