@@ -1,4 +1,4 @@
-FROM nginx:1.10
+FROM nginx:alpine
 MAINTAINER Will Sheehan
 
 RUN rm /etc/nginx/conf.d/default.conf
