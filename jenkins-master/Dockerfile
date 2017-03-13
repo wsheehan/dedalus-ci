@@ -8,3 +8,4 @@ RUN chown -R jenkins:jenkins /var/log/jenkins
 USER jenkins
 
 ENV JENKINS_OPTS="--logfile=/var/log/jenkins/jenkins.log"
+ENV JAVA_OPTS="-Dhudson.security.csrf.requestfield=Jenkins-Crumb"
