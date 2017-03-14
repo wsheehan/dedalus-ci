@@ -1,0 +1,9 @@
+node('dedalus-slave') {
+    stage('Dedalus Setup') {
+        sh "cd /home/dedalus && bash setup.sh"
+    }
+    stage('Test') {
+        // Run Integration Tests
+        sh "cd /home/dedalus && bash tests.sh"
+    }
+}
