@@ -4,6 +4,9 @@ USER root
 RUN apt-get -y install openssh-server default-jre default-jdk
 RUN sed -i 's|session    required     pam_loginuid.so|session    optional     pam_loginuid.so|g' /etc/pam.d/sshd
 RUN mkdir -p /var/run/sshd
+
+# Copy bash scripts
+COPY setup.sh /home/dedalus/setup.sh
 COPY tests.sh /home/dedalus/tests.sh
 
 EXPOSE 22
