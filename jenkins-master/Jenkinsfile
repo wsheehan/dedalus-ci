@@ -1,9 +1,12 @@
 node('dedalus-slave') {
     stage('Dedalus Setup') {
-        sh "cd /home/dedalus && bash setup.sh"
+        sh "cd /home/dedalus && bash build_steps/setup.sh"
     }
-    stage('Test') {
+    stage('Run Example Scripts') {
         // Run Integration Tests
-        sh "cd /home/dedalus && bash tests.sh"
+        sh "cd /home/dedalus && bash build_steps/tests.sh"
+    }
+    stage('Check Example Results') {
+    	sh "cd /home/dedalus && bash build_steps/check_results.sh kdv_burgers.png"
     }
 }
