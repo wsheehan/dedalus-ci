@@ -8,8 +8,10 @@ then
 fi
 
 # Check if Files are binary match
-if [ ! cmp assets/1d_kdv_burgers.png $FILE ]
+if cmp -s assets/1d_kdv_burgers_check.png $FILE
 then
+    echo "files match"
+else
     echo "error: resulting file not as expected" 1>&2
     exit 1
 fi
