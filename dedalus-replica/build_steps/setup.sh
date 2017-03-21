@@ -7,4 +7,6 @@ hg pull
 hg up -C
 
 # compile cython with setup.py
-# python3 setup.py build_ext --inplace
+export MPI_PATH=/home/dedalus/dedalus
+export FFTW_PATH=/home/dedalus/dedalus
+python3 setup.py build_ext --inplace
