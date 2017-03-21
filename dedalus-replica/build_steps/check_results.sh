@@ -1,4 +1,5 @@
 FILE=$1
+CHECK_FILE=$2
 
 # Check that a file was created
 if [ ! -f $FILE ]
@@ -8,7 +9,7 @@ then
 fi
 
 # Check if Files are binary match
-if cmp -s assets/1d_kdv_burgers_check.png $FILE
+if cmp -s $FILE $CHECK_FILE
 then
     echo "files match"
 else
