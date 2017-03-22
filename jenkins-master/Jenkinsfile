@@ -3,15 +3,13 @@ node('dedalus-slave') {
         //sh "cd /home/dedalus && bash build_steps/setup.sh"
     }
     stage('Run Example Scripts') {
-        parallel (
-            "1d KDV (IVP)": { sh "cd /home/dedalus && source dedalus/bin/activate && python3 dedalus/src/dedalus/examples/ivp/1d_kdv_burgers/kdv_burgers.py"},
-            "1d Rayleigh Bernard (EVP)": { sh "cd /home/dedalus && source dedalus/bin/activate && python3 dedalus/src/dedalus/examples/evp/1d_rayleigh_benard/rayleigh_benard.py" }
-        )
+        sh "cd /home/dedalus && \
+            source /home/dedalus/dedalus/bin/activate && \
+            python3 simulations/kdv_burgers_test.py"
     }
     stage('Check Example Results') {
-        parallel (
-            "1d KDV (IVP)": { sh "cd /home/dedalus && bash build_steps/check_results.sh kdv_burgers.png assets/1d_kdv_burgers_check.png" },
-            "1d Rayleigh Bernard (EVP)": { sh "cd /home/dedalus && bash build_steps/check_results.sh rbc_growth.png assets/1d_rayleigh_bernard_check.png" }
-        )
+        sh "cd /home/dedalus && \
+            source /home/dedalus/dedalus/bin/activate && \
+            python3 test_functions/test_quantity.py --file=analysis/1d_kdv_analysis.h5 --quantity='<u>'"
     }
 }
