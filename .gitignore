@@ -1,2 +1,5 @@
 # Ignore SSL cert and key for nginx
 nginx-proxy/conf/myssl.*
+
+# Ignore KDV pngs
+kdv_pngs/
