@@ -31,16 +31,13 @@ h5_file = h5py.File(file, mode='r')
 # If we are checking for a conservation
 u = h5_file['tasks'][quantity]
 
-# Check if quantity is conserved
-# tolerance = 0.05
-
 def tolerant(x1, x2, tol):
     return (x1 * (1. + float(tol)) > x2) != (x1 * (1. - float(tol)) > x2)
 
 def conserve(x):
-    if tolerant(x[0], x[-1], tolerance):
-        print("Quantity conserved")
-    else:
-        sys.exit("Quantity not conserved")
+    for i in range(0,x.size - 1):
+        if not tolerant(x[i], x[i+1], tolerance):
+            sys.exit("Quantity " + quantity + " not conserved")
+    print("Quantity conserved")
 
 conserve(u)                                                                                                                                   
