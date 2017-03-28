@@ -1,6 +1,9 @@
 node('dedalus-slave') {
-    stage('Dedalus Setup') {
-        //sh "cd /home/dedalus && bash build_steps/setup.sh"
+    stage('Pull Newest Version of Dedalus') {
+        sh "cd /home/dedalus && bash build_steps/hg_pull.sh"
+    }
+    stage('Build Cython code') {
+        sh "cd /home/dedalus && bash build_steps/cythonize.sh"
     }
     stage('Run Example Scripts') {
         sh "cd /home/dedalus && \
