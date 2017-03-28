@@ -8,8 +8,6 @@ RUN mkdir -p /var/run/sshd
 # Copy bash scripts & assets
 WORKDIR /home/dedalus
 COPY build_steps build_steps
-COPY test_functions test_functions
-COPY simulations simulations
 
 RUN pip3 install docopt
 
