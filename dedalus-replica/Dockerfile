@@ -7,9 +7,9 @@ RUN mkdir -p /var/run/sshd
 
 # Copy bash scripts & assets
 WORKDIR /home/dedalus
-COPY build_steps build_steps
-
 RUN pip3 install docopt
+COPY build_steps build_steps
+RUN chown -R dedalus:dedalus /home/dedalus/build_steps
 
 EXPOSE 22
 CMD ["/usr/sbin/sshd", "-D"]
