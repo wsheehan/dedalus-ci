@@ -1,6 +1,3 @@
-# Source dedalus
-source /home/dedalus/dedalus/bin/activate
-
 # Run simulation
 python3 simulations/1d_kdv_burgers/simulation.py
 
