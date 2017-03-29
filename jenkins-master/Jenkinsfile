@@ -1,18 +1,11 @@
 node('dedalus-slave') {
     stage('Pull Newest Version of Dedalus') {
-        sh "cd /home/dedalus && bash build_steps/hg_pull.sh"
+        sh "cd /home/dedalus/build_steps && bash hg_pull.sh"
     }
     stage('Build Cython code') {
-        sh "cd /home/dedalus && bash build_steps/cythonize.sh"
+        sh "cd /home/dedalus/build_steps && bash cythonize.sh"
     }
     stage('Run Example Scripts') {
-        sh "cd /home/dedalus && \
-            source /home/dedalus/dedalus/bin/activate && \
-            python3 simulations/kdv_burgers_test.py"
-    }
-    stage('Check Example Results') {
-        sh "cd /home/dedalus && \
-            source /home/dedalus/dedalus/bin/activate && \
-            python3 test_functions/test_quantity.py --file=analysis/1d_kdv_analysis.h5 --quantity='<u>'"
+        sh "cd /home/dedalus/build_steps && bash simulations.sh
     }
 }
