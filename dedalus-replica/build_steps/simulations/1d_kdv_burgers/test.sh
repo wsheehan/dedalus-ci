@@ -5,4 +5,4 @@ python3 simulations/1d_kdv_burgers/simulation.py
 bash test_functions/file_exist.sh analysis/1d_kdv_analysis.h5
 
 # Test Results
-python3 test_functions/test_quantity.py --file='analysis/1d_kdv_analysis.h5' --quantity='<u>'
+python3 test_functions/test_conservation.py --file='analysis/1d_kdv_analysis.h5' --quantity='<u>'
